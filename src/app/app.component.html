@@ -1,6 +1,6 @@
-<form action="">
-  <input type="text" value="{{username}}">
-  <button type="submit">Search</button>
+<form>
+  <input type="text" (keyup.enter)="getRepos()" [(ngModel)]="username" name="username">
+  <button type="submit" (click)="getRepos()">Search</button>
 </form>
 
 <table>

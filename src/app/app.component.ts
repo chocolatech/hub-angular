@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from './app.service';
 import { GithubData } from './github.interface';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -16,11 +17,11 @@ export class AppComponent implements OnInit {
   constructor(private appService: AppService) { }
 
   ngOnInit() {
-    this.getUsers();
+    this.getRepos();
   }
 
-  getUsers(): void {
-    this.appService.getUsers(this.username)
+  getRepos(): void {
+    this.appService.getRepos(this.username)
       .subscribe(users => this.repos$ = users);
   }
 }

@@ -8,9 +8,7 @@ export class AppService {
 
   constructor(private http: HttpClient) { }
 
-
-
-  getUsers(username): Observable<GithubData[]> {
+  getRepos(username): Observable<GithubData[]> {
     const usersUrl = `https://api.github.com/users/${username}/repos`;
     return this.http.get<GithubData[]>(usersUrl);
   }
