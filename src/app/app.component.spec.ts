@@ -4,12 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { AppService } from './app.service';
 import { DebugElement } from '@angular/core/src/debug/debug_node';
 import { HttpClientModule } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
 
 describe('AppComponent', () => {
-  let comp: AppComponent;
-  let fixture: ComponentFixture<AppComponent>;
-  let appService: AppService;
-
   let testRepo = [
     { id: 1, name: "Test", stargazers_count: 3, forks_count: 5, description: "Lorem impsum" }
   ];
@@ -31,11 +29,6 @@ describe('AppComponent', () => {
         AppComponent
       ]
     }).compileComponents();
-    fixture = TestBed.createComponent(AppComponent);
-    comp = fixture.componentInstance;
-    appService = fixture.debugElement.injector.get(AppService);
-    spy = spyOn(appService, 'getRepos').and.returnValue(Promise.resolve(testRepo));
-
   }));
   it('should create the app', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
@@ -47,4 +40,17 @@ describe('AppComponent', () => {
     const app = fixture.debugElement.componentInstance;
     expect(app.username).toEqual('senssei');
   }));
+
+  it(`should have as sample data loaded`, async(() => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    const appService = fixture.debugElement.injector.get(AppService);
+    const spy = spyOn(appService, 'getRepos').and.returnValue(Observable.of(testRepo));
+    
+    fixture.detectChanges();
+    
+    expect(spy).toHaveBeenCalled();
+    // expect(app.repos$).toEqual(testRepo);
+  }));
+
 });
