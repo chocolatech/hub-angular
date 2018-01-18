@@ -50,7 +50,7 @@ describe('AppComponent', () => {
     fixture.detectChanges();
     
     expect(spy).toHaveBeenCalled();
-    // expect(app.repos$).toEqual(testRepo);
+    // expect(app.repos$).toEqual(testRep);
   }));
 
 });

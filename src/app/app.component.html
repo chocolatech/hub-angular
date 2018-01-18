@@ -10,10 +10,13 @@
     <th>Forks</th>
     <th>Description</th>
   </tr>
-  <tr *ngFor="let repo of repos$">
+  <!-- <tr *ngFor="let repo of repos$">
     <td>{{repo.name}}</td>
     <td>{{repo.stargazers_count}}</td>
     <td>{{repo.forks_count}}</td>
     <td>{{repo.description}}</td>
+  </tr> -->
+  <tr *ngFor="let user of users$ | async">
+    <td>{{user.email}}</td>
   </tr>
 </table>
