@@ -16,7 +16,7 @@
     <td>{{repo.forks_count}}</td>
     <td>{{repo.description}}</td>
   </tr> -->
-  <tr *ngFor="let user of users$ | async">
+  <tr *ngFor="let user of users">
     <td>{{user.email}}</td>
   </tr>
 </table>

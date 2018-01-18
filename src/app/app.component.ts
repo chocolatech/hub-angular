@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
   title = 'app';
   repos$: GithubData[];
   username = 'senssei';
-  users$: User[];
+  public users;
   constructor(private appService: AppService) { }
 
   ngOnInit() {
@@ -29,11 +29,14 @@ export class AppComponent implements OnInit {
 
   getUsers() {
     // this.users$ = this.appService.getUsers();
-    this.appService.getUsers().subscribe(response => this.users$ = response,
+ this.appService.getUsers().subscribe(response => {
+      this.users = response;
+      console.log(response);
+    },
       () => {
-        console.log('loooool');
       }
     );
+    console.log(this.users);
   }
 
 }
